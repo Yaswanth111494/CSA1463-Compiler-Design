@@ -1,0 +1,34 @@
+#include <stdio.h>
+#include <stdbool.h>
+#include <string.h>
+
+// Function to check if a character is an operator
+bool isOperator(char ch) {
+    return ch == '+' || ch == '-' || ch == '*' || ch == '/';
+}
+
+int main() {
+    char sourceCode[1000]; // Assuming a maximum input size of 1000 characters
+    printf("Enter your C source code:\n");
+    fgets(sourceCode, sizeof(sourceCode), stdin); // Read input from standard input
+
+    // Remove newline character from the input
+    sourceCode[strcspn(sourceCode, "\n")] = '\0';
+
+    bool hasOperator = false;
+    int len = strlen(sourceCode);
+    for (int i = 0; i < len; i++) {
+        if (isOperator(sourceCode[i])) {
+            hasOperator = true;
+            break; // Exit loop once an operator is found
+        }
+    }
+
+    if (hasOperator) {
+        printf("The input source code contains operators.\n");
+    } else {
+        printf("The input source code does not contain operators.\n");
+    }
+
+    return 0;
+}

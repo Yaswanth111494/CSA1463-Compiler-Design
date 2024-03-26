@@ -1,0 +1,20 @@
+%{
+#include <stdio.h>
+%}
+
+DIGIT       [0-9]
+LETTER      [a-zA-Z]
+ID          {LETTER}({LETTER}|{DIGIT})*
+
+%%
+
+{ID}        printf("Valid identifier: %s\n", yytext);
+.           printf("Invalid identifier: %s\n", yytext);
+
+%%
+
+int main() {
+    printf("Enter an identifier: ");
+    yylex();
+    return 0;
+}
